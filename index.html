@@ -17,12 +17,26 @@ button {
     border: none;
     background-color: white;
     color: grey;
-    padding: 15px 32px;
+    padding: 5px 32px;
     text-align: center;
     text-decoration: none;
-    font-size: 32px;
+    font-size: 15px;
     border-radius: 12px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input {
+    border: none;
+    background-color: white;
+    color: grey;
+    padding: 15px;
+    width: 50%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 28px;
+    border-radius: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-right: 5px;
 }
 
 button:hover {
@@ -70,15 +84,16 @@ p {
 <body>
     <div class="mainBody">
         <br /><br /><br /><br />
-        <button id="dataUsage">Input Data Usage</button>
+        <input type="text" name="dataUsage" id="dataUsage" value="Data Usage">
+        <button id="Submit">Submit</button>
         <p>The total cost of your data:</p>
         <div class="outputName">
             <p><span class="outputName" id="outputName"></span></p>
         </div>
 </div>
 <script>
-document.getElementById("dataUsage").onclick = function(){
-    var dataUsage = prompt("Enter Data Used");
+document.getElementById("Submit").onclick = function(){
+    var dataUsage = document.getElementById("dataUsage").value;
 
     if(dataUsage <= 200){
         var dataCost = 20.00;
