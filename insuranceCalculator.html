@@ -99,8 +99,10 @@ p, label {
         <div class="radioSection">
             <input type="radio" id="female" name="userSex" value="female">
             <label for="female">Female</label><br>
+
             <input type="radio" id="male" name="userSex" value="male">
             <label for="male">Male</label><br>
+
         </div><br />
 
         <!-- input user age -->
@@ -130,7 +132,19 @@ document.getElementById("Submit").onclick = function(){
     // user sex
     let custSex = document.querySelector('input[name="userSex"]:checked').value;
 
-    if(custSex.toLowerCase() == "female"){
+    if(custSex.toLowerCase() == "male"){
+        if((custAge>=15)&&(custAge<25)){
+            var percentMod = 0.25;
+        } 
+        else if((custAge>=25)&&(custAge<40)){
+            var percentMod = 0.17;
+        } 
+        else{
+            var percentMod = 0.10;
+        }
+    }
+
+    else{
         if((custAge>=15)&&(custAge<25)){
             var percentMod = 0.20;
         } 
@@ -142,23 +156,10 @@ document.getElementById("Submit").onclick = function(){
         }
     }
 
-    else if(custSex.toLowerCase() == "male"){
-        if((custAge>=15)&&(custAge<25)){
-            var percentMod = 0.25;
-        } 
-        else if((custAge>=25)&&(custAge<40)){
-            var percentMod = 0.17;
-        } 
-        else{
-            var percentMod = 0.10;
-        }
-
         var finalPrice = (carPrice * percentMod)/12;
         document.getElementById("endCost").innerText = (`$${finalPrice.toFixed(2)}`);
     }
 
-
-}
 </script>
 </body>
 </html>
