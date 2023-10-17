@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Landscape Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    padding: 0;
+    background-color: aliceblue;
+    text-align: center;
+}
+
+button {
+    border: none;
+    background-color: white;
+    color: grey;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input {
+    border: none;
+    background-color: white;
+    color: grey;
+    padding: 15px;
+    width: 50%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 28px;
+    border-radius: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-right: 5px;
+}
+
+input[type="radio"] {
+    text-align: left;
+}
+
+button:hover {
+    color: rgb(112, 112, 112);
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+p, label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 26px;
+}
+
+.outputName {
+    background-color: white;
+    width: 300px;
+    height: 75px;
+    margin: auto;
+    border-radius: 12px;
+    line-height: 75px;
+}
+
+.mainBody {
+    background-color: rgb(214, 214, 214);
+    width: 400px;
+    height: 820px;
+    border-radius: 12px;
+    text-align: center;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    
+}
+
+.radioSection{
+    width: 100%;
+    height: 100;
+    text-align: left;
+    margin: auto;
+}
+</style>
+
+
+</head>
+
+<body>
+    <div class="mainBody">
+        <br />
+        <input type="number" name="houseNum" id="houseNum" placeholder="House Number"><br><br>
+        <input type="number" name="propDept" id="propDept" placeholder="Property Depth"><br><br>
+        <input type="number" name="propWidt" id="propWidt" placeholder="Property Width"><br>
+        <p>Grass Type:</p>
+        <div class="radioSection">
+            <input type="radio" id="fescue" name="grassType" value="Fescue">
+            <label for="Fescue">Fescue</label><br>
+            <input type="radio" id="bentgrass" name="grassType" value="Bentgrass">
+            <label for="Bentgrass">Bentgrass</label><br>
+            <input type="radio" id="campus" name="grassType" value="Campus">
+            <label for="Campus">Campus</label>
+        </div>
+        <br />
+        <input type="number" name="treeAmnt" id="treeAmnt" placeholder="Trees Purchased"> <br /><br />
+        <button id="Submit">Submit</button> <br /><br />
+        <p>Final cost for #<span class="address" id="address">___</span></p>
+        <div class="outputName">
+            <p><span class="endCost" id="endCost"></span></p>
+        </div>
+</div>
+<script>
+document.getElementById("Submit").onclick = function(){
+
+    // house number
+    let houseNum = document.getElementById("houseNum").value;
+
+    // property depth
+    let propDepth = document.getElementById("propDept").value;
+
+    //property width
+    let propWidth = document.getElementById("propWidt").value;
+
+    // tree amount
+    let treeAmount = document.getElementById("treeAmnt").value;
+
+    // grass type
+    let grassType = document.querySelector('input[name="grassType"]:checked').value;
+
+    // define propSqft
+    let propSqft = propDepth * propWidth;
+
+    // define base cost
+    var totCost = 1000;
+
+    // square feet over 5000 charge
+    if(propSqft > 5000){ 
+        var totCost = totCost + 500;
+    } 
+
+    // fescue grass
+    if (grassType.toLowerCase() == "fescue"){
+        var grassCost = propSqft * 0.05;
+    } 
+
+    else if (grassType.toLowerCase() == "bentgrass"){
+        var grassCost = propSqft * 0.02;
+    } 
+
+    else if (grassType.toLowerCase() == "campus"){
+        var grassCost = propSqft * 0.01;
+    } 
+
+    // adding the cost of grass
+    var totCost = totCost + grassCost; 
+
+    // $100 per tree
+    var totCost = totCost + (treeAmount * 100); 
+
+    document.getElementById("address").innerText = (`${houseNum}:`);
+    document.getElementById("endCost").innerText = (`$${totCost.toFixed(2)}`);
+}
+
+</script>
+</body>
+</html>
+
