@@ -36,6 +36,7 @@ input {
     font-size: 28px;
     border-radius: 12px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-right: 5px;
 }
 
 button:hover {
@@ -82,8 +83,38 @@ p {
 
 <body>
     <div class="mainBody">
-        <a href="dataCalculator.html" id="dataCalc"><button id="dataCalc">Data Calculator</button></a>
-    </div>
+        <br /><br /><br /><br />
+        <input type="text" name="dataUsage" id="dataUsage" placeholder="Data Usage">
+        <button id="Submit">Submit</button>
+        <p>The total cost of your data:</p>
+        <div class="outputName">
+            <p><span class="outputName" id="outputName"></span></p>
+        </div>
+</div>
+<script>
+document.getElementById("Submit").onclick = function(){
+    var dataUsage = document.getElementById("dataUsage").value;
+
+    if(dataUsage <= 200){
+        var dataCost = 20.00;
+    }
+
+    else if (dataUsage <= 500){
+        var dataCost = (dataUsage - 200) * 0.105 + 20;
+    } 
+
+    else if (dataUsage <= 1024){
+        var dataCost = (dataUsage - 500) * 0.110 + 51.50;
+    } 
+
+    else{ 
+       var dataCost = 118.00;
+    }
+
+    document.getElementById("outputName").innerText = (`$${dataCost.toFixed(2)}`);
+}
+
+</script>
 </body>
 </html>
 
